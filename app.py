@@ -1,9 +1,9 @@
 import streamlit as st
 from ultralytics import YOLO
-import av
-from streamlit_webrtc import webrtc_streamer, VideoTransformerBase, RTCConfiguration
 import cv2
 import numpy as np
+from streamlit_webrtc import webrtc_streamer, VideoTransformerBase, RTCConfiguration
+import av
 
 st.set_page_config(page_title="YOLOv8 Live Detection", layout="wide")
 st.title("📸 YOLOv8 Live Object Detection")
@@ -15,8 +15,13 @@ RTC_CONFIGURATION = RTCConfiguration(
 
 @st.cache_resource
 def load_model():
-    model = YOLO("best.pt")  # your model file
-    return model
+    try:
+        model = YOLO("best.pt")  # change path if needed
+        st.success("✅ Model loaded successfully!")
+        return model
+    except Exception as e:
+        st.error(f"Model loading failed: {e}")
+        st.stop()
 
 model = load_model()
 
