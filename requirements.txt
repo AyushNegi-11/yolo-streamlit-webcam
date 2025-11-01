@@ -1,9 +1,16 @@
+# Core Streamlit environment
 streamlit==1.39.0
+# YOLO + Torch stack (lightweight)
 ultralytics==8.1.39
 torch==2.1.0
 torchvision==0.16.0
+# Computer vision + utilities
 opencv-python-headless==4.8.0.74
-pillow
+pillow==10.3.0
+numpy==1.26.4
+# Webcam / WebRTC
 av==10.0.0
 streamlit-webrtc==0.57.0
-numpy==1.26.4
+# Prevent Streamlit from trying to auto-upgrade
+rich==14.2.0
+markdown-it-py==4.0.0
