@@ -41,9 +41,11 @@ class YOLOVideoTransformer(VideoTransformerBase):
         annotated = cv2.cvtColor(annotated, cv2.COLOR_RGB2BGR)
         return av.VideoFrame.from_ndarray(annotated, format="bgr24")
 
+from streamlit_webrtc import webrtc_streamer, VideoTransformerBase, RTCConfiguration, WebRtcMode
+
 webrtc_streamer(
     key="yolo",
-    mode="SENDRECV",
+    mode=WebRtcMode.SENDRECV,  # ✅ use enum, not string
     rtc_configuration=RTC_CONFIGURATION,
     video_transformer_factory=YOLOVideoTransformer,
     media_stream_constraints={"video": True, "audio": False},
